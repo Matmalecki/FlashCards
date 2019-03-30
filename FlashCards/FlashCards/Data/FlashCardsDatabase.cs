@@ -28,6 +28,8 @@ namespace FlashCards.Data
             return _database.Table<Card>().Where(c => c.Id == id).FirstOrDefaultAsync();
         }
 
+
+
         public Task<List<Bundle>> GetBundlesAsync()
         {
             return _database.Table<Bundle>().ToListAsync();

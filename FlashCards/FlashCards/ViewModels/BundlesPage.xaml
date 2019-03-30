@@ -10,9 +10,16 @@
 
         <ListView.ItemTemplate>
             <DataTemplate>
-                <TextCell Text="{Binding Name}" />
+                <ViewCell>
+                    <StackLayout>
+                        <Label Text="{Binding Name}" />
+                        <Button Text="x" BackgroundColor="OrangeRed" Clicked="DeleteBundleHandler" CommandParameter="{Binding Id}"/>
+                    </StackLayout>
+                </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
+
+
         <ListView.Footer>
             <Button Text="+" Clicked="AddBundleHandler"/>
         </ListView.Footer>

@@ -5,34 +5,28 @@
              Title="{Binding Name}">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Edit bundle's info" Clicked="EditBundleHandler" />
-        <ToolbarItem Text="Delete bundle" Clicked="DeleteBundleHandler" />
     </ContentPage.ToolbarItems>
   <ListView x:Name="CardsView"
             ItemsSource="{Binding Items}"
             ItemTapped="SelectedCardHandler"
             CachingStrategy="RecycleElement">
             
-    <!--Built in Cells-->
-    <ListView.ItemTemplate>
-        <DataTemplate>
-                <TextCell Text="{Binding Information} + {Binding Answer}" />
+
+
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout>
+                        <Label Text="{Binding Information}" />
+                        <Label Text="{Binding Answer}" />
+                        <Button Text="Delete" BackgroundColor="OrangeRed" Clicked="DeleteCardHandler" CommandParameter="{Binding Id}"/>
+                    </StackLayout>
+                </ViewCell>
             </DataTemplate>
-    </ListView.ItemTemplate>
-    
-    <!--Custom View Cells-->
-    <!--
-    <ListView.ItemTemplate>
-      <DataTemplate>
-        <ViewCell>
-          <StackLayout>
-            <Label Text="{Binding Text}" 
-                   Style="{DynamicResource ListItemTextStyle}" />
-            <Label Text="{Binding Detail}" 
-                   Style="{DynamicResource ListItemDetailTextStyle}"/>
-          </StackLayout>
-        </ViewCell>
-      </DataTemplate>
-    </ListView.ItemTemplate>
-    -->
-  </ListView>
+        </ListView.ItemTemplate>
+
+        <ListView.Footer>
+            <Button Text="+" Clicked="CreateCardHandler"/>
+        </ListView.Footer>
+    </ListView>
 </ContentPage>

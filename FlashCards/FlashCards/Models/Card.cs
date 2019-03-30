@@ -9,7 +9,6 @@ namespace FlashCards.Models
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        [Unique]
         public string Information { get; set; }
         public string Answer { get; set; }
 

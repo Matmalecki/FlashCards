@@ -42,6 +42,81 @@ namespace FlashCards.ViewModels
             });
         }
 
+        async void DeleteBundleHandler(object sender, ItemTappedEventArgs e)
+        {
+            Button btn = sender as Button;
+            Bundle bundle = await App.Database.GetBundleAsync(int.Parse(btn.CommandParameter.ToString()));
+            
+            InputBox(this.Navigation, bundle);
+        }
+
+
+        public async void InputBox(INavigation navigation, Bundle bundle)
+        {
+            // wait in this proc, until user did his input 
+
+            var title = new Label { Text = "Are you sure?", HorizontalOptions = LayoutOptions.Center, FontAttributes = FontAttributes.Bold };
+            var message = new Label { Text = "Enter this bundle's name:" };
+            var input = new Entry { Text = "" };
+
+            var btnOk = new Button
+            {
+                Text = "Ok",
+                WidthRequest = 100,
+                BackgroundColor = Color.BlueViolet
+            };
+            btnOk.Clicked += async (s, e) =>
+            {
+                var result = input.Text;
+                if (result == bundle.Name)
+                {
+                    await App.Database.DeleteBundleAsync(bundle);
+                    await navigation.PopModalAsync();
+                }
+                else
+                {
+                    message.TextColor = Color.Plum;
+                }
+            };
+
+            var btnCancel = new Button
+            {
+                Text = "Cancel",
+                WidthRequest = 100,
+                BackgroundColor = Color.BlueViolet
+            };
+            btnCancel.Clicked += async (s, e) =>
+            {
+                await navigation.PopModalAsync();
+
+            };
+
+            var slButtons = new StackLayout
+            {
+                Orientation = StackOrientation.Horizontal,
+                Children = { btnOk, btnCancel },
+            };
+
+            var layout = new StackLayout
+            {
+                Padding = new Thickness(0, 40, 0, 0),
+                VerticalOptions = LayoutOptions.StartAndExpand,
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                Orientation = StackOrientation.Vertical,
+                Children = { title, message, input, slButtons },
+            };
+
+            // create and show page
+            var page = new ContentPage();
+            page.Content = layout;
+            navigation.PushModalAsync(page);
+            // open keyboard
+            input.Focus();
+
+            // code is waiting her, until result is passed with tcs.SetResult() in btn-Clicked
+            // then proc returns the result
+        }
+
 
 
     }

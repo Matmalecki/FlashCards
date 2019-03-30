@@ -4,9 +4,12 @@
              x:Class="FlashCards.ViewModels.CardDetailPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Information" />
+            <Entry Text="{Binding Information}" x:Name="EntryInformation"/>
+            <Label Text="Answer" />
+            <Entry Text="{Binding Answer}" x:Name="EntryAnswer"/>
+            <Button Text="Save" Clicked="SaveButtonHandler"/>
+            <Label Text="" x:Name="ResultField"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
