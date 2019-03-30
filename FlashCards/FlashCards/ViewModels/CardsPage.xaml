@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FlashCards.ViewModels.CardsPage"
+             Title="{Binding Name}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edit bundle's info" Clicked="EditBundleHandler" />
+        <ToolbarItem Text="Delete bundle" Clicked="DeleteBundleHandler" />
+    </ContentPage.ToolbarItems>
+  <ListView x:Name="CardsView"
+            ItemsSource="{Binding Items}"
+            ItemTapped="SelectedCardHandler"
+            CachingStrategy="RecycleElement">
+            
+    <!--Built in Cells-->
+    <ListView.ItemTemplate>
+        <DataTemplate>
+                <TextCell Text="{Binding Information} + {Binding Answer}" />
+            </DataTemplate>
+    </ListView.ItemTemplate>
+    
+    <!--Custom View Cells-->
+    <!--
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <StackLayout>
+            <Label Text="{Binding Text}" 
+                   Style="{DynamicResource ListItemTextStyle}" />
+            <Label Text="{Binding Detail}" 
+                   Style="{DynamicResource ListItemDetailTextStyle}"/>
+          </StackLayout>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+    -->
+  </ListView>
+</ContentPage>
