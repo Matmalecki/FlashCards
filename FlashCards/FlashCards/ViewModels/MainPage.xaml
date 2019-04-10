@@ -4,11 +4,9 @@
              xmlns:local="clr-namespace:FlashCards"
              x:Class="FlashCards.MainPage">
 
-    <StackLayout>
+    <StackLayout x:Name="Stlay">
         <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+        <Image Source="images/apple.jpg"/>
     </StackLayout>
 
 </ContentPage>

@@ -16,6 +16,7 @@ namespace FlashCards.Data
             _database = new SQLiteAsyncConnection(dbPath);
             _database.CreateTableAsync<Bundle>().Wait();
             _database.CreateTableAsync<Card>().Wait();
+            _database.CreateTableAsync<PhotoCard>().Wait();
         }
 
         public Task<List<Card>> GetCardsFromBundle(int id)
@@ -28,6 +29,15 @@ namespace FlashCards.Data
             return _database.Table<Card>().Where(c => c.Id == id).FirstOrDefaultAsync();
         }
 
+        public Task<List<PhotoCard>> GetPhotoCardsFromBundle(int id)
+        {
+            return _database.Table<PhotoCard>().Where(c => c.BundleId == id).ToListAsync();
+        }
+
+        public Task<PhotoCard> GetPhotoCardAsync(int id)
+        {
+            return _database.Table<PhotoCard>().Where(c => c.Id == id).FirstOrDefaultAsync();
+        }
 
 
         public Task<List<Bundle>> GetBundlesAsync()
@@ -40,7 +50,7 @@ namespace FlashCards.Data
             return _database.Table<Bundle>().Where(b => b.Id == id).FirstOrDefaultAsync();
         }
 
-        public Task<int> SaveCardAsync(Card card)
+        public Task<int> SaveCardAsync(ICard card)
         {
             if (card.Id != 0)
             {
@@ -65,7 +75,7 @@ namespace FlashCards.Data
             }
         }
 
-        public Task<int> DeleteCardAsync(Card card)
+        public Task<int> DeleteCardAsync(ICard card)
         {
             return _database.DeleteAsync(card);
         }

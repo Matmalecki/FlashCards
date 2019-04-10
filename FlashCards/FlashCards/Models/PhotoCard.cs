@@ -5,8 +5,7 @@ using System.Text;
 
 namespace FlashCards.Models
 {
-
-    public class Card : ICard
+    public class PhotoCard : ICard
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
@@ -15,7 +14,6 @@ namespace FlashCards.Models
 
         [Indexed]
         public int BundleId { get; set; }
-        
 
     }
 }

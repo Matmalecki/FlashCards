@@ -11,14 +11,14 @@ using Xamarin.Forms.Xaml;
 namespace FlashCards.ViewModels
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CardsPage : ContentPage
+    public partial class CardsPage : ContentPage, INotifyPropertyChanged
     {
-        Bundle bundle;
+        private Bundle _bundle;
 
         public CardsPage(Bundle bundle)
         {
             InitializeComponent();
-            this.bundle = bundle;
+            this._bundle = bundle;
 			
         }
 
@@ -26,19 +26,19 @@ namespace FlashCards.ViewModels
         {
             base.OnAppearing();
  
-            CardsView.ItemsSource = await App.Database.GetCardsFromBundle(bundle.Id);
+            CardsView.ItemsSource = await App.Database.GetCardsFromBundle(_bundle.Id);
         }
 
         async void CreateCardHandler(object sender, EventArgs e )
         {
-            await Navigation.PushAsync(new CardDetailPage(this.bundle, new Card()));
+            await Navigation.PushAsync(new CardDetailPage(this._bundle, new Card()));
         }
 
         async void SelectedCardHandler(object sender, ItemTappedEventArgs e)
         {
             if (e.Item == null)
                 return;
-            await Navigation.PushAsync(new CardDetailPage(this.bundle, e.Item as Card));
+            await Navigation.PushAsync(new CardDetailPage(this._bundle, e.Item as Card));
         }
 
         async void DeleteCardHandler(object sender, EventArgs e)
@@ -46,14 +46,14 @@ namespace FlashCards.ViewModels
             Button btn = sender as Button;
             Card card = await App.Database.GetCardAsync(int.Parse(btn.CommandParameter.ToString()));
             await App.Database.DeleteCardAsync(card);
-            CardsView.ItemsSource = await App.Database.GetCardsFromBundle(bundle.Id);
+            CardsView.ItemsSource = await App.Database.GetCardsFromBundle(_bundle.Id);
         }
 
         async void EditBundleHandler(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new BundleDetailPage()
             {
-                BindingContext = bundle
+                BindingContext = _bundle
             });
         }
 

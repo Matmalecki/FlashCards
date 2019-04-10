@@ -10,21 +10,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\apple.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\apple.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
     <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="ViewModels\BundleDetailPage.xaml">
+    <EmbeddedResource Update="ViewModels\Bundle\BundleDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="ViewModels\BundlesPage.xaml">
+    <EmbeddedResource Update="ViewModels\Bundle\BundlesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="ViewModels\CardDetailPage.xaml">
+    <EmbeddedResource Update="ViewModels\Card\CardDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="ViewModels\CardsPage.xaml">
+    <EmbeddedResource Update="ViewModels\Card\CardsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

@@ -14,6 +14,7 @@ namespace FlashCards.ViewModels
     public partial class BundlesPage : ContentPage
     {
 
+
         public BundlesPage()
         {
             InitializeComponent();
@@ -47,14 +48,14 @@ namespace FlashCards.ViewModels
             Button btn = sender as Button;
             Bundle bundle = await App.Database.GetBundleAsync(int.Parse(btn.CommandParameter.ToString()));
             
-            InputBox(this.Navigation, bundle);
+            InputBox(bundle);
         }
 
 
-        public async void InputBox(INavigation navigation, Bundle bundle)
-        {
-            // wait in this proc, until user did his input 
 
+
+        public void InputBox(Bundle bundle)
+        {
             var title = new Label { Text = "Are you sure?", HorizontalOptions = LayoutOptions.Center, FontAttributes = FontAttributes.Bold };
             var message = new Label { Text = "Enter this bundle's name:" };
             var input = new Entry { Text = "" };
@@ -71,7 +72,7 @@ namespace FlashCards.ViewModels
                 if (result == bundle.Name)
                 {
                     await App.Database.DeleteBundleAsync(bundle);
-                    await navigation.PopModalAsync();
+                    await Navigation.PopModalAsync();
                 }
                 else
                 {
@@ -87,7 +88,7 @@ namespace FlashCards.ViewModels
             };
             btnCancel.Clicked += async (s, e) =>
             {
-                await navigation.PopModalAsync();
+                await Navigation.PopModalAsync();
 
             };
 
@@ -106,15 +107,12 @@ namespace FlashCards.ViewModels
                 Children = { title, message, input, slButtons },
             };
 
-            // create and show page
+
             var page = new ContentPage();
             page.Content = layout;
-            navigation.PushModalAsync(page);
-            // open keyboard
+            Navigation.PushModalAsync(page);
             input.Focus();
 
-            // code is waiting her, until result is passed with tcs.SetResult() in btn-Clicked
-            // then proc returns the result
         }
 
 

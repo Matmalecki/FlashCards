@@ -6,11 +6,11 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Edit bundle's info" Clicked="EditBundleHandler" />
     </ContentPage.ToolbarItems>
-  <ListView x:Name="CardsView"
+    <ListView x:Name="CardsView"
             ItemsSource="{Binding Items}"
             ItemTapped="SelectedCardHandler"
             CachingStrategy="RecycleElement">
-            
+
 
 
         <ListView.ItemTemplate>

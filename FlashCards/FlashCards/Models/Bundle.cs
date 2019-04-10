@@ -5,6 +5,11 @@ using System.Text;
 
 namespace FlashCards.Models
 {
+    public enum CardType
+    {
+        Basic, Photo
+    }
+
     public class Bundle
     {
         [PrimaryKey, AutoIncrement]
@@ -12,5 +17,6 @@ namespace FlashCards.Models
         [Unique]
         public string Name { get; set; }
 
+        public CardType CardType { get; set; }
     }
 }

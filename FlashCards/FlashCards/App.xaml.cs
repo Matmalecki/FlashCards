@@ -15,7 +15,7 @@ namespace FlashCards
         public App()
         {
             InitializeComponent();
-
+            
             MainPage = new NavigationPage(new BundlesPage());
         }
 

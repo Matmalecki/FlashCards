@@ -13,7 +13,9 @@
                 <ViewCell>
                     <StackLayout>
                         <Label Text="{Binding Name}" />
-                        <Button Text="x" BackgroundColor="OrangeRed" Clicked="DeleteBundleHandler" CommandParameter="{Binding Id}"/>
+                        <Label Text="{Binding CardType}" />
+                        <Button Text="x" BackgroundColor="OrangeRed"
+                                Clicked="DeleteBundleHandler" CommandParameter="{Binding Id}"/>
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>
