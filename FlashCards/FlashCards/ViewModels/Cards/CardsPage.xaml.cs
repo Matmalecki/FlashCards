@@ -84,11 +84,16 @@ namespace FlashCards.ViewModels.Cards
             {
                 CardsView.ItemTemplate = new DataTemplate(() =>
                 {
-                    Image image = new Image();
+                    Image image = new Image() { WidthRequest = 80, HeightRequest = 80 };
                     image.SetBinding(Image.SourceProperty, new Binding("Information",BindingMode.Default,new StreamToStringConverter()));
-                    Label answerLabel = new Label();
+                    Label answerLabel = new Label() {
+                        FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
+                        HorizontalOptions = LayoutOptions.CenterAndExpand,
+                        VerticalOptions = LayoutOptions.CenterAndExpand,
+                        MinimumWidthRequest = 200
+                    };
                     answerLabel.SetBinding(Label.TextProperty, new Binding("Answer"));
-                    Button btn = new Button() { Text = "Delete", BackgroundColor = Color.OrangeRed };
+                    Button btn = new Button() { Text = "Delete", BackgroundColor = Color.OrangeRed , FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)) };
                     btn.SetBinding(Button.CommandParameterProperty, new Binding("Id"));
                     btn.Clicked += (sender, args) => DeleteCardHandler(sender, args);
 
@@ -98,7 +103,10 @@ namespace FlashCards.ViewModels.Cards
                         image,
                         answerLabel,
                         btn
-                        }
+                        },
+                        Orientation = StackOrientation.Horizontal,
+                        HorizontalOptions = LayoutOptions.CenterAndExpand,
+                        VerticalOptions = LayoutOptions.CenterAndExpand
                     };
                     ViewCell viewCell = new ViewCell() { View = stackLayout };
                     return viewCell;
@@ -110,19 +118,28 @@ namespace FlashCards.ViewModels.Cards
                 {
                     Label infoLabel = new Label();
                     infoLabel.SetBinding(Label.TextProperty, new Binding("Information"));
-                    Label answerLabel = new Label();
+                    Label answerLabel = new Label()
+                    {
+                        FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
+                        HorizontalOptions = LayoutOptions.CenterAndExpand,
+                        VerticalOptions = LayoutOptions.CenterAndExpand,
+                        MinimumWidthRequest = 200
+                    };
                     answerLabel.SetBinding(Label.TextProperty, new Binding("Answer"));
-                    Button btn = new Button() { Text = "Delete", BackgroundColor = Color.OrangeRed };
+                    Button btn = new Button() { Text = "Delete", BackgroundColor = Color.OrangeRed, FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)) };
                     btn.SetBinding(Button.CommandParameterProperty, new Binding("Id"));
                     btn.Clicked += (sender, args) => DeleteCardHandler(sender, args);
 
                     var stackLayout = new StackLayout()
                     {
                         Children = {
-                    infoLabel,
-                    answerLabel,
-                    btn
-                    }
+                        infoLabel,
+                        answerLabel,
+                        btn
+                        },
+                        Orientation = StackOrientation.Horizontal,
+                        HorizontalOptions = LayoutOptions.CenterAndExpand,
+                        VerticalOptions = LayoutOptions.CenterAndExpand
                     };
                     ViewCell viewCell = new ViewCell() { View = stackLayout };
                     return viewCell;
