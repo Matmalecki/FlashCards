@@ -93,7 +93,7 @@ namespace FlashCards.ViewModels.Cards
                         MinimumWidthRequest = 200
                     };
                     answerLabel.SetBinding(Label.TextProperty, new Binding("Answer"));
-                    Button btn = new Button() { Text = "Delete", BackgroundColor = Color.OrangeRed , FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)) };
+                    Button btn = new Button() { Text = "Delete", BackgroundColor = Color.OrangeRed , FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)), HorizontalOptions = LayoutOptions.End };
                     btn.SetBinding(Button.CommandParameterProperty, new Binding("Id"));
                     btn.Clicked += (sender, args) => DeleteCardHandler(sender, args);
 

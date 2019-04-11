@@ -10,12 +10,15 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <Image WidthRequest="300" HeightRequest="300" x:Name="ImageDisplay" />
-            <Button Text="Pick Photo" Clicked="PickPhotoHandler"/>
-            <Label Text="Answer" />
-            <Entry Text="{Binding Answer}" x:Name="EntryAnswer"/>
-            <Button Text="Save" Clicked="SaveButtonHandler"/>
-            <Label Text="" x:Name="ResultField"/>
+            <Grid Padding="5" HeightRequest="200">
+                <Image HorizontalOptions="CenterAndExpand" x:Name="ImageDisplay" />
+            </Grid>
+            <StackLayout HorizontalOptions="Center">
+                <Button Text="Pick Photo" Clicked="PickPhotoHandler"/>
+                <Label Text="Answer" />
+                <Entry Text="{Binding Answer}" x:Name="EntryAnswer" />
+                <Button  Text="Save" Clicked="SaveButtonHandler"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
