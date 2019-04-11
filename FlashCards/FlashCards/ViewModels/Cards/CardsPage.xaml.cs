@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace FlashCards.ViewModels
+namespace FlashCards.ViewModels.Cards
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CardsPage : ContentPage, INotifyPropertyChanged
@@ -17,9 +17,10 @@ namespace FlashCards.ViewModels
 
         public CardsPage(Bundle bundle)
         {
+            
             InitializeComponent();
             this._bundle = bundle;
-			
+            SetUpList();
         }
 
         protected override async void OnAppearing()
@@ -55,6 +56,38 @@ namespace FlashCards.ViewModels
             {
                 BindingContext = _bundle
             });
+        }
+
+        private void SetUpList()
+        {
+
+            CardsView.ItemTemplate = new DataTemplate(() =>
+            {
+                Label infoLabel = new Label();
+                infoLabel.SetBinding(Label.TextProperty, new Binding("Information"));
+                Label answerLabel = new Label();
+                answerLabel.SetBinding(Label.TextProperty, new Binding("Answer"));
+                Button btn = new Button() { Text = "Delete", BackgroundColor = Color.OrangeRed };
+                btn.SetBinding(Button.CommandParameterProperty, new Binding("Id"));
+                btn.Clicked += (sender, args) => DeleteCardHandler(sender, args);
+
+                var stackLayout = new StackLayout()
+                {
+                    Children = {
+                    infoLabel,
+                    answerLabel,
+                    btn
+                }
+                };
+                ViewCell viewCell = new ViewCell() { View = stackLayout };
+                return viewCell;
+            });
+
+
+           // else photo ...
+
+            
+
         }
 
       

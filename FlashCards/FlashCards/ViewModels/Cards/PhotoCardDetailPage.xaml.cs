@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace FlashCards.ViewModels
+namespace FlashCards.ViewModels.Cards
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CardDetailPage : ContentPage
-    {
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class PhotoCardDetailPage : ContentPage
+	{
         Card card;
         Bundle bundle;
-        public CardDetailPage(Bundle bundle, Card card)
+        public PhotoCardDetailPage(Bundle bundle, Card card)
         {
             InitializeComponent();
 
@@ -29,7 +29,7 @@ namespace FlashCards.ViewModels
         {
             base.OnAppearing();
 
-            EntryInformation.Behaviors.Add(new CardInfoValidator( bundle.Id,card.Id));
+            EntryInformation.Behaviors.Add(new CardInfoValidator(bundle.Id, card.Id));
         }
 
         async void SaveButtonHandler(object sender, EventArgs e)

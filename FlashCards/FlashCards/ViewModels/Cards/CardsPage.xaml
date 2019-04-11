@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FlashCards.ViewModels.CardsPage"
+             x:Class="FlashCards.ViewModels.Cards.CardsPage"
              Title="{Binding Name}">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Edit bundle's info" Clicked="EditBundleHandler" />
@@ -13,17 +13,6 @@
 
 
 
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <StackLayout>
-                        <Label Text="{Binding Information}" />
-                        <Label Text="{Binding Answer}" />
-                        <Button Text="Delete" BackgroundColor="OrangeRed" Clicked="DeleteCardHandler" CommandParameter="{Binding Id}"/>
-                    </StackLayout>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
 
         <ListView.Footer>
             <Button Text="+" Clicked="CreateCardHandler"/>

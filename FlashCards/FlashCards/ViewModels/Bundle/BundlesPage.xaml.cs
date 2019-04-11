@@ -1,4 +1,5 @@
 ﻿using FlashCards.Models;
+using FlashCards.ViewModels.Cards;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;

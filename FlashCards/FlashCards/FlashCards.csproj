@@ -29,10 +29,13 @@
     <EmbeddedResource Update="ViewModels\Bundle\BundlesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="ViewModels\Card\CardDetailPage.xaml">
+    <EmbeddedResource Update="ViewModels\Cards\CardDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="ViewModels\Card\CardsPage.xaml">
+    <EmbeddedResource Update="ViewModels\Cards\CardsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ViewModels\Cards\PhotoCardDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
