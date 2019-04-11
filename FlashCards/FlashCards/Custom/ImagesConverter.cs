@@ -4,11 +4,10 @@ using System.IO;
 using System.Text;
 using Xamarin.Forms;
 
-namespace FlashCards.Data
+namespace FlashCards.Custom
 {
     public class ImagesConverter
     {
-
         public static string ImageToStringBase64(Stream input)
         {
             byte[] buffer = new byte[16 * 1024];

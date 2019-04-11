@@ -1,11 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FlashCards.ViewModels.Cards.PhotoCardDetailPage">
+             x:Class="FlashCards.ViewModels.Cards.PhotoCardDetailPage"
+             xmlns:local="clr-namespace:FlashCards.Custom">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:StreamToStringConverter x:Key="converter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Information" />
-            <Entry Text="{Binding Information}" x:Name="EntryInformation"/>
+            <Image WidthRequest="300" HeightRequest="300" x:Name="ImageDisplay" />
+            <Button Text="Pick Photo" Clicked="PickPhotoHandler"/>
             <Label Text="Answer" />
             <Entry Text="{Binding Answer}" x:Name="EntryAnswer"/>
             <Button Text="Save" Clicked="SaveButtonHandler"/>
