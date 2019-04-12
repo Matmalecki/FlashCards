@@ -1,5 +1,6 @@
 ﻿using FlashCards.Custom;
 using FlashCards.Models;
+using FlashCards.ViewModels.BundleViewModels;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -74,7 +75,7 @@ namespace FlashCards.Views.Cards
         {
             await Navigation.PushAsync(new BundleDetailPage()
             {
-                BindingContext = _bundle
+                BindingContext = new BundleDetailViewModel(_bundle)
             });
         }
 

@@ -12,11 +12,23 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Name" />
-            <Entry Text="{Binding Name}" x:Name="EntryName"/>            
+            <Entry Text="{Binding Name}" x:Name="EntryName">
+                <Entry.Behaviors>
+                    <val:BundleNameValidator x:Name="Validator" Id="{Binding Id}"/>
+                </Entry.Behaviors>
+            </Entry>            
             <Label x:Name="Debug" Text="Photos?"/>
             <Switch IsToggled="{Binding CardType, Converter={StaticResource converter}}"/>
-            <Button x:Name="SaveButton" Text="Save" Command="{Binding SaveButtonCommand}"/>
-            <Label Text="" x:Name="ResultField"/>
+            <Button x:Name="SaveButton" Text="Save" Command="{Binding SaveButtonCommand}">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference Validator}, Path=IsValid}" Value="True">
+                        <Setter Property="IsEnabled" Value="True"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference Validator}, Path=IsValid}" Value="False">
+                        <Setter Property="IsEnabled" Value="False"/>
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

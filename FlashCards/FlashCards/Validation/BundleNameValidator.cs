@@ -19,7 +19,13 @@ namespace FlashCards.Validation
             private set { base.SetValue(IsValidPropertyKey, value); }
         }
 
-        public int IdOfBundle{ get;set; }
+        public static readonly BindableProperty IdProperty = BindableProperty.CreateAttached("Id", typeof(int), typeof(BundleNameValidator), 0);
+
+        public int Id
+        {
+            get { return (int)GetValue(IdProperty); }
+            set { SetValue(IdProperty, value); }
+        }
 
         protected override void OnAttachedTo(Entry bindable)
         {
@@ -29,7 +35,7 @@ namespace FlashCards.Validation
         void HandleTextChanged(object sender, TextChangedEventArgs e)
         {
             var obj = (Entry)sender;
-            List<Bundle> otherBundles = App.Database.GetBundlesAsync().Result.FindAll(b => b.Name == obj.Text && b.Id != IdOfBundle);
+            List<Bundle> otherBundles = App.Database.GetBundlesAsync().Result.FindAll(b => b.Name == obj.Text && b.Id != Id);
             if (otherBundles.Count > 0)
                 IsValid = false;
             else IsValid = true;

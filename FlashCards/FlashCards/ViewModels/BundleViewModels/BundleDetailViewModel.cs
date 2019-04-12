@@ -20,11 +20,13 @@ namespace FlashCards.ViewModels.BundleViewModels
         {
             _bundle = new Bundle();
         }
-        public Bundle Bundle
-        {
-            get; set;
-        }
 
+        public int Id
+        {
+            get { return _bundle.Id; }
+            set { _bundle.Id = value; }
+        }
+            
         public string Name
         {
             get
@@ -64,10 +66,8 @@ namespace FlashCards.ViewModels.BundleViewModels
 
         private async void SaveButtonHandler()
         {
-           
             int result = await App.Database.SaveBundleAsync(_bundle);
-            await Application.Current.MainPage.Navigation.PopAsync();
-            
+            await Application.Current.MainPage.Navigation.PopAsync(); 
         }
 
     }
