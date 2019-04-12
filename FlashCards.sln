@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlashCards.Android", "Flash
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlashCards.UWP", "FlashCards\FlashCards.UWP\FlashCards.UWP.csproj", "{22D87271-5A31-47D5-9C11-A156F5DD2A92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlashCards", "FlashCards\FlashCards\FlashCards.csproj", "{7A2AC98D-ED7F-4252-A1FF-BC3CAE574BD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlashCards", "FlashCards\FlashCards\FlashCards.csproj", "{7A2AC98D-ED7F-4252-A1FF-BC3CAE574BD7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace FlashCards.ViewModels.Cards
+namespace FlashCards.Views.Cards
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CardsPage : ContentPage, INotifyPropertyChanged

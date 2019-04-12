@@ -93,7 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FlashCards\FlashCards.csproj">
-      <Project>{4FB7D57C-6BD3-49BF-905E-1D22376C88EF}</Project>
+      <Project>{7A2AC98D-ED7F-4252-A1FF-BC3CAE574BD7}</Project>
       <Name>FlashCards</Name>
     </ProjectReference>
   </ItemGroup>

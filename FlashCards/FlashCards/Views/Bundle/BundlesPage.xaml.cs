@@ -1,5 +1,6 @@
 ﻿using FlashCards.Models;
-using FlashCards.ViewModels.Cards;
+using FlashCards.ViewModels.BundleViewModels;
+using FlashCards.Views.Cards;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace FlashCards.ViewModels
+namespace FlashCards.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BundlesPage : ContentPage
@@ -40,7 +41,7 @@ namespace FlashCards.ViewModels
         {
             await Navigation.PushAsync(new BundleDetailPage()
             {
-                BindingContext = new Bundle()
+                BindingContext = new BundleDetailViewModel()
             });
         }
 

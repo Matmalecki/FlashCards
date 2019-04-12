@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using FlashCards.ViewModels;
+using FlashCards.Views;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace FlashCards
