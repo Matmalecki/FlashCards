@@ -4,6 +4,7 @@ using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using FlashCards.Views;
+using FlashCards.ViewModels.BundleViewModels;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace FlashCards
@@ -16,7 +17,7 @@ namespace FlashCards
         {
             InitializeComponent();
             
-            MainPage = new NavigationPage(new BundlesPage());
+            MainPage = new NavigationPage(new BundlesPage() { BindingContext = new BundlesViewModel() });
         }
 
         protected override void OnStart()

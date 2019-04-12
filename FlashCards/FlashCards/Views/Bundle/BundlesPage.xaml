@@ -4,7 +4,7 @@
              x:Class="FlashCards.Views.BundlesPage">
 
     <ListView x:Name="BundlesView"
-            ItemsSource="{Binding Items}"
+            ItemsSource="{Binding Bundles}"
             ItemTapped="Handle_ItemTapped"
             CachingStrategy="RecycleElement">
 
@@ -15,7 +15,7 @@
                         <Label Text="{Binding Name}" />
                         <Label Text="{Binding CardType}" />
                         <Button Text="x" BackgroundColor="OrangeRed"
-                                Clicked="DeleteBundleHandler" CommandParameter="{Binding Id}"/>
+                                Clicked="DeleteBundle"/>
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>
@@ -23,7 +23,7 @@
 
 
         <ListView.Footer>
-            <Button Text="+" Clicked="AddBundleHandler"/>
+            <Button Text="+" Command="{Binding AddBundleCommand}"/>
         </ListView.Footer>
 
     </ListView>

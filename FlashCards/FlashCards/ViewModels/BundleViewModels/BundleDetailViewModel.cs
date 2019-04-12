@@ -55,14 +55,10 @@ namespace FlashCards.ViewModels.BundleViewModels
         {
             get
             {
-                    return _saveButtonCommand ?? (_saveButtonCommand = new Command(SaveButtonHandler, validateSaveButton));
+                    return _saveButtonCommand ?? (_saveButtonCommand = new Command(SaveButtonHandler));
             }
         }
 
-        private bool validateSaveButton()
-        {
-            return true;
-        }
 
         private async void SaveButtonHandler()
         {
