@@ -1,5 +1,6 @@
 ﻿using FlashCards.Models;
 using FlashCards.Validation;
+using FlashCards.ViewModels.BundleViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,11 +21,6 @@ namespace FlashCards.Views
         public BundleDetailPage()
         {
             InitializeComponent();
-
-        }
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
         }
 
 

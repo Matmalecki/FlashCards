@@ -1,6 +1,7 @@
 ﻿using FlashCards.Custom;
 using FlashCards.Models;
 using FlashCards.ViewModels.BundleViewModels;
+using FlashCards.ViewModels.CardViewModels;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ using Xamarin.Forms.Xaml;
 namespace FlashCards.Views.Cards
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CardsPage : ContentPage, INotifyPropertyChanged
+    public partial class CardsPage : ContentPage
     {
         private Bundle _bundle;
 
@@ -42,12 +43,10 @@ namespace FlashCards.Views.Cards
 
         async void CreateCardHandler(object sender, EventArgs e )
         {
-
-
             if (_bundle.CardType == CardType.Photo)
                 await Navigation.PushAsync(new PhotoCardDetailPage(this._bundle, new PhotoCard()));
             else
-                await Navigation.PushAsync(new CardDetailPage(this._bundle, new Card()));
+                await Navigation.PushAsync(new CardDetailPage() { BindingContext = new CardDetailViewModel(_bundle) });
         }
 
         async void SelectedCardHandler(object sender, ItemTappedEventArgs e)
@@ -57,7 +56,7 @@ namespace FlashCards.Views.Cards
             if (_bundle.CardType == CardType.Photo)
                 await Navigation.PushAsync(new PhotoCardDetailPage(this._bundle, e.Item as PhotoCard));
             else 
-                await Navigation.PushAsync(new CardDetailPage(this._bundle, e.Item as Card));
+                await Navigation.PushAsync(new CardDetailPage() { BindingContext = new CardDetailViewModel(e.Item as Card, _bundle) });
         }
 
         async void DeleteCardHandler(object sender, EventArgs e)

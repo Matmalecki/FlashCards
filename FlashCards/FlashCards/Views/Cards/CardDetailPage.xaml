@@ -1,14 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FlashCards.Views.Cards.CardDetailPage">
+             x:Class="FlashCards.Views.Cards.CardDetailPage"
+             xmlns:val="clr-namespace:FlashCards.Validation">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Information" />
-            <Entry Text="{Binding Information}" x:Name="EntryInformation"/>
+            <Entry Text="{Binding Information}" x:Name="EntryInformation">
+                <Entry.Behaviors>
+                    <val:CardInfoValidator x:Name="Validator" Id="{Binding Id}" BundleId="{Binding BundleId}"/>
+                </Entry.Behaviors>
+            </Entry>
             <Label Text="Answer" />
             <Entry Text="{Binding Answer}" x:Name="EntryAnswer"/>
-            <Button Text="Save" Clicked="SaveButtonHandler"/>
+            <Button Text="Save" Command="{Binding SaveButtonCommand}">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference Validator}, Path=IsValid}" Value="True">
+                        <Setter Property="IsEnabled" Value="True"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference Validator}, Path=IsValid}" Value="False">
+                        <Setter Property="IsEnabled" Value="False"/>
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
             <Label Text="" x:Name="ResultField"/>
         </StackLayout>
     </ContentPage.Content>
