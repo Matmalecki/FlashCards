@@ -15,7 +15,7 @@
             </Grid>
             <StackLayout HorizontalOptions="Center">
                 <Button Text="Pick Photo" Command="{Binding PickPhotoCommand}"/>
-                <Label Text="{Binding BundleId}" />
+                <Label Text="Answer" />
                 <Entry Text="{Binding Answer}" x:Name="EntryAnswer" />
                 <Button  Text="Save" Command="{Binding SaveButtonCommand}"/>
             </StackLayout>

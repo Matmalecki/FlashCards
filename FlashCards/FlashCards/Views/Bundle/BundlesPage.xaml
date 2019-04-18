@@ -3,7 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FlashCards.Views.BundlesPage">
 
-    <ListView x:Name="BundlesView"
+    <StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label  Grid.Column="0" Grid.Row="0" Text="Name"/>
+            <Label  Grid.Column="1" Grid.Row="0" Text="Type"/>
+            <Label Grid.Column="2" Grid.Row="0" Text=""/>
+        </Grid>
+
+        <ListView x:Name="BundlesView"
             ItemsSource="{Binding Bundles}"
             ItemTapped="Handle_ItemTapped"
             CachingStrategy="RecycleElement">
@@ -11,20 +21,23 @@
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <StackLayout>
-                        <Label Text="{Binding Name}" />
-                        <Label Text="{Binding CardType}" />
-                        <Button Text="x" BackgroundColor="OrangeRed"
+                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                        <Label Grid.Column="0" Text="{Binding Name}" />
+                        <Label  Grid.Column="1" Text="{Binding CardType}" />
+                        <Button Grid.Column="2" Text="x" BackgroundColor="OrangeRed"
                                 Clicked="DeleteBundle"/>
-                    </StackLayout>
+                    </Grid>
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
 
 
-        <ListView.Footer>
-            <Button Text="+" Command="{Binding AddBundleCommand}"/>
-        </ListView.Footer>
-
-    </ListView>
+            <ListView.Footer>
+                <Button Text="+" Command="{Binding AddBundleCommand}"/>
+            </ListView.Footer>
+        </ListView>
+    </StackLayout>
 </ContentPage>

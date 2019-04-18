@@ -97,18 +97,17 @@ namespace FlashCards.Views.Cards
                     btn.SetBinding(Button.CommandParameterProperty, new Binding("Id"));
                     btn.Clicked += (sender, args) => DeleteCardHandler(sender, args);
 
-                    var stackLayout = new StackLayout()
+                    var grid = new Grid()
                     {
-                        Children = {
-                        image,
-                        answerLabel,
-                        btn
-                        },
-                        Orientation = StackOrientation.Horizontal,
-                        HorizontalOptions = LayoutOptions.CenterAndExpand,
-                        VerticalOptions = LayoutOptions.CenterAndExpand
+                        
+                        HorizontalOptions = LayoutOptions.FillAndExpand,
+                        VerticalOptions = LayoutOptions.FillAndExpand
                     };
-                    ViewCell viewCell = new ViewCell() { View = stackLayout };
+
+                    grid.Children.Add(image, 0, 0);
+                    grid.Children.Add(answerLabel, 1, 0);
+                    grid.Children.Add(btn, 2, 0);
+                    ViewCell viewCell = new ViewCell() { View = grid };
                     return viewCell;
                 });
             }
@@ -116,7 +115,9 @@ namespace FlashCards.Views.Cards
             {
                 CardsView.ItemTemplate = new DataTemplate(() =>
                 {
-                    Label infoLabel = new Label();
+                    Label infoLabel = new Label() {
+                        FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label))
+                    };
                     infoLabel.SetBinding(Label.TextProperty, new Binding("Information"));
                     Label answerLabel = new Label()
                     {
@@ -130,18 +131,15 @@ namespace FlashCards.Views.Cards
                     btn.SetBinding(Button.CommandParameterProperty, new Binding("Id"));
                     btn.Clicked += (sender, args) => DeleteCardHandler(sender, args);
 
-                    var stackLayout = new StackLayout()
-                    {
-                        Children = {
-                        infoLabel,
-                        answerLabel,
-                        btn
-                        },
-                        Orientation = StackOrientation.Horizontal,
-                        HorizontalOptions = LayoutOptions.CenterAndExpand,
-                        VerticalOptions = LayoutOptions.CenterAndExpand
+                    var grid = new Grid()
+                    {           
+                        HorizontalOptions = LayoutOptions.FillAndExpand,
+                        VerticalOptions = LayoutOptions.FillAndExpand
                     };
-                    ViewCell viewCell = new ViewCell() { View = stackLayout };
+                    grid.Children.Add(infoLabel, 0, 0);
+                    grid.Children.Add(answerLabel, 1, 0);
+                    grid.Children.Add(btn, 2, 0);
+                    ViewCell viewCell = new ViewCell() { View = grid };
                     return viewCell;
                 });
 
