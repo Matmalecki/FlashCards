@@ -11,13 +11,13 @@
     <ContentPage.Content>
         <StackLayout>
             <Grid Padding="5" HeightRequest="200">
-                <Image HorizontalOptions="CenterAndExpand" x:Name="ImageDisplay" />
+                <Image HorizontalOptions="CenterAndExpand" Source="{Binding Information, Converter={x:StaticResource converter}}" />
             </Grid>
             <StackLayout HorizontalOptions="Center">
-                <Button Text="Pick Photo" Clicked="PickPhotoHandler"/>
-                <Label Text="Answer" />
+                <Button Text="Pick Photo" Command="{Binding PickPhotoCommand}"/>
+                <Label Text="{Binding BundleId}" />
                 <Entry Text="{Binding Answer}" x:Name="EntryAnswer" />
-                <Button  Text="Save" Clicked="SaveButtonHandler"/>
+                <Button  Text="Save" Command="{Binding SaveButtonCommand}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

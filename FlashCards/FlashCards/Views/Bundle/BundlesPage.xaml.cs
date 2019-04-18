@@ -20,11 +20,12 @@ namespace FlashCards.Views
         public BundlesPage()
         {
             InitializeComponent();
+
+            BindingContext = new BundlesViewModel();
         }
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-
             BundlesView.ItemsSource = await App.Database.GetBundlesAsync();
         }
 

@@ -41,10 +41,10 @@ namespace FlashCards.Views.Cards
                 CardsView.ItemsSource = await App.Database.GetCardsFromBundle(_bundle.Id);
         }
 
-        async void CreateCardHandler(object sender, EventArgs e )
+        async void CreateCardHandler(object sender, EventArgs e)
         {
             if (_bundle.CardType == CardType.Photo)
-                await Navigation.PushAsync(new PhotoCardDetailPage(this._bundle, new PhotoCard()));
+                await Navigation.PushAsync(new PhotoCardDetailPage() { BindingContext = new PhotoCardDetailViewModel(_bundle) });
             else
                 await Navigation.PushAsync(new CardDetailPage() { BindingContext = new CardDetailViewModel(_bundle) });
         }
@@ -54,7 +54,7 @@ namespace FlashCards.Views.Cards
             if (e.Item == null)
                 return;
             if (_bundle.CardType == CardType.Photo)
-                await Navigation.PushAsync(new PhotoCardDetailPage(this._bundle, e.Item as PhotoCard));
+                await Navigation.PushAsync(new PhotoCardDetailPage() { BindingContext = new PhotoCardDetailViewModel( e.Item as PhotoCard, this._bundle) });
             else 
                 await Navigation.PushAsync(new CardDetailPage() { BindingContext = new CardDetailViewModel(e.Item as Card, _bundle) });
         }

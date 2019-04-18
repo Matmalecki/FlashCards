@@ -66,8 +66,8 @@ namespace FlashCards.ViewModels.BundleViewModels
 
         private void DeleteButtonHandlerAsync(Bundle bundle)
         {
-            var title = new Label { Text = "Are you sure?", HorizontalOptions = LayoutOptions.Center, FontAttributes = FontAttributes.Bold };
-            var message = new Label { Text = "Enter this bundle's name:" };
+            var title = new Label { Text = $"Are you sure you want to delete {bundle.Name}?", HorizontalOptions = LayoutOptions.Center, FontAttributes = FontAttributes.Bold };
+            var message = new Label { Text = "Enter this bundle's name to delete it:" };
             var input = new Entry { Text = "" };
 
             var btnOk = new Button
@@ -104,7 +104,7 @@ namespace FlashCards.ViewModels.BundleViewModels
 
             var slButtons = new StackLayout
             {
-                Orientation = StackOrientation.Horizontal,
+                Orientation = StackOrientation.Vertical,
                 Children = { btnOk, btnCancel },
             };
 

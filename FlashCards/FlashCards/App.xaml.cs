@@ -17,7 +17,7 @@ namespace FlashCards
         {
             InitializeComponent();
             
-            MainPage = new NavigationPage(new BundlesPage() { BindingContext = new BundlesViewModel() });
+            MainPage = new NavigationPage(new BundlesPage());
         }
 
         protected override void OnStart()
