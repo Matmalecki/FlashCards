@@ -84,7 +84,7 @@ namespace FlashCards.Views.Cards
             {
                 CardsView.ItemTemplate = new DataTemplate(() =>
                 {
-                    Image image = new Image() { WidthRequest = 80, HeightRequest = 80 };
+                    Image image = new Image() { WidthRequest = 120, HeightRequest = 120 };
                     image.SetBinding(Image.SourceProperty, new Binding("Information",BindingMode.Default,new StreamToStringConverter()));
                     Label answerLabel = new Label() {
                         FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
@@ -92,7 +92,10 @@ namespace FlashCards.Views.Cards
                         VerticalOptions = LayoutOptions.CenterAndExpand,
                     };
                     answerLabel.SetBinding(Label.TextProperty, new Binding("Answer"));
-                    Button btn = new Button() { Text = "X", BackgroundColor = ColorConstants.RemoveButtonBgColor , FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)), HorizontalOptions = LayoutOptions.End };
+                    Button btn = new Button() { Text = "x", BackgroundColor = ColorConstants.RemoveButtonBgColor , 
+                        HorizontalOptions = LayoutOptions.FillAndExpand,
+                        VerticalOptions = LayoutOptions.FillAndExpand
+                    };
                     btn.SetBinding(Button.CommandParameterProperty, new Binding("Id"));
                     btn.Clicked += (sender, args) => DeleteCardHandler(sender, args);
 
@@ -121,18 +124,18 @@ namespace FlashCards.Views.Cards
                 {
                     Label infoLabel = new Label() {
                         FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
-                        HorizontalOptions = LayoutOptions.CenterAndExpand,
                         VerticalOptions = LayoutOptions.CenterAndExpand
                     };
                     infoLabel.SetBinding(Label.TextProperty, new Binding("Information"));
                     Label answerLabel = new Label()
                     {
                         FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
-                        HorizontalOptions = LayoutOptions.CenterAndExpand,
                         VerticalOptions = LayoutOptions.CenterAndExpand
                     };
                     answerLabel.SetBinding(Label.TextProperty, new Binding("Answer"));
-                    Button btn = new Button() { Text = "X", BackgroundColor = ColorConstants.RemoveButtonBgColor, FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)) };
+                    Button btn = new Button() { Text = "x", BackgroundColor = ColorConstants.RemoveButtonBgColor, 
+                        HorizontalOptions =LayoutOptions.FillAndExpand, VerticalOptions=LayoutOptions.FillAndExpand
+                    };
                     btn.SetBinding(Button.CommandParameterProperty, new Binding("Id"));
                     btn.Clicked += (sender, args) => DeleteCardHandler(sender, args);
 

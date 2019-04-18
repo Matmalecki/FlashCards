@@ -11,15 +11,22 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <Grid Padding="5" HeightRequest="200">
+            <Grid Padding="5" HeightRequest="200" WidthRequest="200">
                 <Image HorizontalOptions="CenterAndExpand" Source="{Binding Information, Converter={x:StaticResource converter}}" />
             </Grid>
-            <StackLayout HorizontalOptions="Center">
-                <Button Text="Pick Photo" Command="{Binding PickPhotoCommand}" BackgroundColor="{x:Static cols:ColorConstants.AddButtonBgColor}"/>
-                <Label Text="Answer" />
-                <Entry Text="{Binding Answer}" x:Name="EntryAnswer" />
-                <Button  Text="Save" Command="{Binding SaveButtonCommand}"  BackgroundColor="{x:Static cols:ColorConstants.AcceptButtonBgColor}"/>
-            </StackLayout>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*" />
+                    <ColumnDefinition Width="30*" />
+                    <ColumnDefinition Width="30*" />
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Column="1">
+                    <Button Text="Pick Photo" Command="{Binding PickPhotoCommand}" BackgroundColor="{x:Static cols:ColorConstants.AddButtonBgColor}"/>
+                    <Label Text="Answer" />
+                    <Entry Text="{Binding Answer}" x:Name="EntryAnswer" />
+                    <Button  Text="Save" Command="{Binding SaveButtonCommand}"  BackgroundColor="{x:Static cols:ColorConstants.AcceptButtonBgColor}"/>
+                </StackLayout>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

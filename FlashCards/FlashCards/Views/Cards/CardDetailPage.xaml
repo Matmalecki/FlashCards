@@ -6,11 +6,19 @@
              xmlns:val="clr-namespace:FlashCards.Validation"
              x:Name="Page">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Information" />
-            <Entry Text="{Binding Information}" x:Name="EntryInformation"/>
-            <Entry Text="{Binding Answer}"/>
-            <Button Text="Save" Command="{Binding SaveButtonCommand}"  BackgroundColor="{x:Static cols:ColorConstants.AcceptButtonBgColor}"/>
-        </StackLayout>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30*" />
+                <ColumnDefinition Width="30*" />
+                <ColumnDefinition Width="30*" />
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Column="1">
+                <Label HorizontalOptions="CenterAndExpand" Text="Information" />
+                <Entry Text="{Binding Information}" x:Name="EntryInformation"/>
+                <Label HorizontalOptions="CenterAndExpand" Text="Answer"/>
+                <Entry Text="{Binding Answer}"/>
+                <Button Text="Save" Command="{Binding SaveButtonCommand}"  BackgroundColor="{x:Static cols:ColorConstants.AcceptButtonBgColor}"/>
+            </StackLayout>
+            </Grid>
     </ContentPage.Content>
 </ContentPage>

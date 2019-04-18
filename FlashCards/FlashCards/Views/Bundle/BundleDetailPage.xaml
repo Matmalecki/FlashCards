@@ -11,25 +11,32 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Name" />
-            <Entry Text="{Binding Name}">
-                <Entry.Behaviors>
-                    <val:BundleNameValidator x:Name="Validator"/>
-                </Entry.Behaviors>
-            </Entry>            
-            <Label x:Name="Debug" Text="Photos?"/>
-            <Switch IsToggled="{Binding CardType, Converter={StaticResource converter}}"/>
-            <Button Text="Save" Command="{Binding SaveButtonCommand}" BackgroundColor="{x:Static cols:ColorConstants.AcceptButtonBgColor}" >
-                <Button.Triggers>
-                    <DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference Validator}, Path=IsValid}" Value="True">
-                        <Setter Property="IsEnabled" Value="True"/>
-                    </DataTrigger>
-                    <DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference Validator}, Path=IsValid}" Value="False">
-                        <Setter Property="IsEnabled" Value="False"/>
-                    </DataTrigger>
-                </Button.Triggers>
-            </Button>
-        </StackLayout>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30*" />
+                <ColumnDefinition Width="30*" />
+                <ColumnDefinition Width="30*" />
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Column="1">
+                <Label Text="Name" />
+                <Entry Text="{Binding Name}">
+                    <Entry.Behaviors>
+                        <val:BundleNameValidator x:Name="Validator"/>
+                    </Entry.Behaviors>
+                </Entry>            
+                <Label x:Name="Debug" Text="Photos?"/>
+                <Switch IsToggled="{Binding CardType, Converter={StaticResource converter}}"/>
+                <Button Text="Save" Command="{Binding SaveButtonCommand}" BackgroundColor="{x:Static cols:ColorConstants.AcceptButtonBgColor}" >
+                    <Button.Triggers>
+                        <DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference Validator}, Path=IsValid}" Value="True">
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger>
+                        <DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference Validator}, Path=IsValid}" Value="False">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
