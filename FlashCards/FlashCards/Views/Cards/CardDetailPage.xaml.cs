@@ -17,6 +17,7 @@ namespace FlashCards.Views.Cards
         public CardDetailPage()
         {
             InitializeComponent();
+            
         }
 
     }

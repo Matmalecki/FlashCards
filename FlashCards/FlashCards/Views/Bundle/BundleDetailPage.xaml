@@ -12,7 +12,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Name" />
-            <Entry Text="{Binding Name}" x:Name="EntryName">
+            <Entry Text="{Binding Name}">
                 <Entry.Behaviors>
                     <val:BundleNameValidator x:Name="Validator"/>
                 </Entry.Behaviors>

@@ -13,7 +13,6 @@ namespace FlashCards.ViewModels.CardViewModels
 
         private Bundle _bundle;
 
-
         public CardDetailViewModel(Bundle bundle)
         {
             _card = new Card();
@@ -35,8 +34,10 @@ namespace FlashCards.ViewModels.CardViewModels
             }
             set
             {
+
                 _card.Information = value;
                 OnPropertyChanged();
+                SaveButtonCommand.ChangeCanExecute();
             }
         }
 
@@ -70,12 +71,22 @@ namespace FlashCards.ViewModels.CardViewModels
         {
             get
             {
-                return _saveButtonCommand ?? (_saveButtonCommand = new Command(SaveButtonHandler));
+                return _saveButtonCommand ?? (_saveButtonCommand = new Command(SaveButtonHandler, CanBeSaved));
             }
+        }
+
+        private bool CanBeSaved()
+        {
+            List<Card> otherCards = App.Database.GetCardsFromBundle(BundleId).Result.FindAll(c => c.Information == Information && c.Id != Id);
+            if (otherCards.Count > 0)
+                return false;
+            else return true;
         }
 
         private async void SaveButtonHandler()
         {
+            
+
             int result = await App.Database.SaveCardAsync(_card);
             await Application.Current.MainPage.Navigation.PopAsync();
         }
