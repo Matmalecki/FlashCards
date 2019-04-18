@@ -1,4 +1,5 @@
-﻿using FlashCards.Models;
+﻿using FlashCards.Custom;
+using FlashCards.Models;
 using FlashCards.Views;
 using System;
 using System.Collections.Generic;
@@ -72,9 +73,9 @@ namespace FlashCards.ViewModels.BundleViewModels
 
             var btnOk = new Button
             {
-                Text = "Ok",
+                Text = "Remove",
                 WidthRequest = 100,
-                BackgroundColor = Color.BlueViolet
+                BackgroundColor = ColorConstants.RemoveButtonBgColor
             };
             btnOk.Clicked += async (s, e) =>
             {
@@ -94,7 +95,7 @@ namespace FlashCards.ViewModels.BundleViewModels
             {
                 Text = "Cancel",
                 WidthRequest = 100,
-                BackgroundColor = Color.BlueViolet
+                BackgroundColor = ColorConstants.AcceptButtonBgColor
             };
             btnCancel.Clicked += async (s, e) =>
             {

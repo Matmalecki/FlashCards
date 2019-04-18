@@ -87,19 +87,23 @@ namespace FlashCards.Views.Cards
                     Image image = new Image() { WidthRequest = 80, HeightRequest = 80 };
                     image.SetBinding(Image.SourceProperty, new Binding("Information",BindingMode.Default,new StreamToStringConverter()));
                     Label answerLabel = new Label() {
-                        FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
+                        FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
                         HorizontalOptions = LayoutOptions.CenterAndExpand,
                         VerticalOptions = LayoutOptions.CenterAndExpand,
-                        MinimumWidthRequest = 200
                     };
                     answerLabel.SetBinding(Label.TextProperty, new Binding("Answer"));
-                    Button btn = new Button() { Text = "Delete", BackgroundColor = Color.OrangeRed , FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)), HorizontalOptions = LayoutOptions.End };
+                    Button btn = new Button() { Text = "X", BackgroundColor = ColorConstants.RemoveButtonBgColor , FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)), HorizontalOptions = LayoutOptions.End };
                     btn.SetBinding(Button.CommandParameterProperty, new Binding("Id"));
                     btn.Clicked += (sender, args) => DeleteCardHandler(sender, args);
 
                     var grid = new Grid()
                     {
-                        
+                        ColumnDefinitions =
+                        {
+                            new ColumnDefinition { Width = new GridLength(30, GridUnitType.Star) },
+                            new ColumnDefinition { Width = new GridLength(30, GridUnitType.Star) },
+                            new ColumnDefinition { Width = new GridLength(10, GridUnitType.Star) }
+                        },
                         HorizontalOptions = LayoutOptions.FillAndExpand,
                         VerticalOptions = LayoutOptions.FillAndExpand
                     };
@@ -116,23 +120,30 @@ namespace FlashCards.Views.Cards
                 CardsView.ItemTemplate = new DataTemplate(() =>
                 {
                     Label infoLabel = new Label() {
-                        FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label))
+                        FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
+                        HorizontalOptions = LayoutOptions.CenterAndExpand,
+                        VerticalOptions = LayoutOptions.CenterAndExpand
                     };
                     infoLabel.SetBinding(Label.TextProperty, new Binding("Information"));
                     Label answerLabel = new Label()
                     {
-                        FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
+                        FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
                         HorizontalOptions = LayoutOptions.CenterAndExpand,
-                        VerticalOptions = LayoutOptions.CenterAndExpand,
-                        MinimumWidthRequest = 200
+                        VerticalOptions = LayoutOptions.CenterAndExpand
                     };
                     answerLabel.SetBinding(Label.TextProperty, new Binding("Answer"));
-                    Button btn = new Button() { Text = "Delete", BackgroundColor = Color.OrangeRed, FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)) };
+                    Button btn = new Button() { Text = "X", BackgroundColor = ColorConstants.RemoveButtonBgColor, FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)) };
                     btn.SetBinding(Button.CommandParameterProperty, new Binding("Id"));
                     btn.Clicked += (sender, args) => DeleteCardHandler(sender, args);
 
                     var grid = new Grid()
-                    {           
+                    {
+                        ColumnDefinitions =
+                        {
+                            new ColumnDefinition { Width = new GridLength(30, GridUnitType.Star) },
+                            new ColumnDefinition { Width = new GridLength(30, GridUnitType.Star) },
+                            new ColumnDefinition { Width = new GridLength(10, GridUnitType.Star) }
+                        },
                         HorizontalOptions = LayoutOptions.FillAndExpand,
                         VerticalOptions = LayoutOptions.FillAndExpand
                     };

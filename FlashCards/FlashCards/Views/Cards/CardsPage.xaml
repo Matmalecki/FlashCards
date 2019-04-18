@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FlashCards.Views.Cards.CardsPage"
+             xmlns:cols="clr-namespace:FlashCards.Custom"
              Title="{Binding Name}">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Edit bundle's info" Clicked="EditBundleHandler" />
@@ -15,7 +16,7 @@
 
 
         <ListView.Footer>
-            <Button Text="+" Clicked="CreateCardHandler"/>
+            <Button Text="+" Clicked="CreateCardHandler" BackgroundColor="{x:Static cols:ColorConstants.AddButtonBgColor}"/>
         </ListView.Footer>
     </ListView>
 </ContentPage>

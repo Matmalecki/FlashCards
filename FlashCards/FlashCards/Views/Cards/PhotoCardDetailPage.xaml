@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FlashCards.Views.Cards.PhotoCardDetailPage"
+             xmlns:cols="clr-namespace:FlashCards.Custom"
              xmlns:local="clr-namespace:FlashCards.Custom">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -14,10 +15,10 @@
                 <Image HorizontalOptions="CenterAndExpand" Source="{Binding Information, Converter={x:StaticResource converter}}" />
             </Grid>
             <StackLayout HorizontalOptions="Center">
-                <Button Text="Pick Photo" Command="{Binding PickPhotoCommand}"/>
+                <Button Text="Pick Photo" Command="{Binding PickPhotoCommand}" BackgroundColor="{x:Static cols:ColorConstants.AddButtonBgColor}"/>
                 <Label Text="Answer" />
                 <Entry Text="{Binding Answer}" x:Name="EntryAnswer" />
-                <Button  Text="Save" Command="{Binding SaveButtonCommand}"/>
+                <Button  Text="Save" Command="{Binding SaveButtonCommand}"  BackgroundColor="{x:Static cols:ColorConstants.AcceptButtonBgColor}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

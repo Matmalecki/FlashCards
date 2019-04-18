@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FlashCards.Views.Cards.CardDetailPage"
+             xmlns:cols="clr-namespace:FlashCards.Custom"
              xmlns:val="clr-namespace:FlashCards.Validation"
              x:Name="Page">
     <ContentPage.Content>
@@ -9,7 +10,7 @@
             <Label Text="Information" />
             <Entry Text="{Binding Information}" x:Name="EntryInformation"/>
             <Entry Text="{Binding Answer}"/>
-            <Button Text="Save" Command="{Binding SaveButtonCommand}"/>
+            <Button Text="Save" Command="{Binding SaveButtonCommand}"  BackgroundColor="{x:Static cols:ColorConstants.AcceptButtonBgColor}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
