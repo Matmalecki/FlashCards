@@ -11,10 +11,13 @@
 
   <ItemGroup>
     <None Remove="Images\apple.jpg" />
+    <None Remove="Images\correct.png" />
+    <None Remove="Images\wrong.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Images\apple.jpg" />
+    <EmbeddedResource Include="Images\wrong.png" />
+    <EmbeddedResource Include="Images\correct.png" />
   </ItemGroup>
 
   <ItemGroup>

@@ -34,6 +34,22 @@ namespace FlashCards.ViewModels.ExamViewModels
 
         }
 
+        private ImageSource _imageSource;
+
+        public ImageSource ImageSource
+        {
+            get
+            {
+                return _imageSource;
+            }
+            set
+            {
+                _imageSource = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         private int _score;
         public int Score
         {
@@ -75,23 +91,24 @@ namespace FlashCards.ViewModels.ExamViewModels
         {
             get
             {
-                return _submitAnswer ?? (_submitAnswer = new Command(CheckAnswer));
+                return _submitAnswer ?? (_submitAnswer = new Command(CheckAnswerAsync));
             }
         }
 
 
 
-        private void CheckAnswer()
+        private async void CheckAnswerAsync()
         {
 
             if (UserAnswer == currentQuestion.Answer)
             {
                 Score++;
                 // set image correct
+                ImageSource = ImageSource.FromResource("FlashCards.Images.correct.png");
             }
             else
             {
-                //set image false async?
+                ImageSource = ImageSource.FromResource("FlashCards.Images.wrong.png");
             }
 
             if (_questions.Count > 0)
@@ -99,6 +116,7 @@ namespace FlashCards.ViewModels.ExamViewModels
                 SetQuestion();
             } else
             {
+                await Task.Delay(500);
                 ShowScoreAndLeave();
                 Application.Current.MainPage.Navigation.PopAsync() ;
             }
