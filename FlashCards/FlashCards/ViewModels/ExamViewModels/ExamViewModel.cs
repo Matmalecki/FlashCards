@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace FlashCards.ViewModels.ExamViewModels
@@ -29,6 +30,7 @@ namespace FlashCards.ViewModels.ExamViewModels
         {
             currentQuestion = _questions.Pop();
             OnPropertyChanged("Information");
+            UserAnswer = "";
 
         }
 
@@ -95,15 +97,44 @@ namespace FlashCards.ViewModels.ExamViewModels
             if (_questions.Count > 0)
             {
                 SetQuestion();
-            }else
+            } else
             {
-                
-                PageContent = 
-                //finish game
+                ShowScoreAndLeave();
+                Application.Current.MainPage.Navigation.PopAsync() ;
             }
 
 
         }
+
+        private async void ShowScoreAndLeave()
+        {
+            var message = new Label { Text = $"Your score is : {Score}" };
+
+            Button button = new Button { Text = "Go back" };
+
+            button.Clicked += (a, e) =>
+            {
+               Application.Current.MainPage.Navigation.PopModalAsync();
+
+            };
+
+            var layout = new StackLayout
+            {
+                Padding = new Thickness(0, 40, 0, 0),
+                VerticalOptions = LayoutOptions.CenterAndExpand,
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                Orientation = StackOrientation.Vertical,
+                Children = {  message, button },
+            };
+
+            var page = new ContentPage();
+            page.Content = layout;
+            await Application.Current.MainPage.Navigation.PushModalAsync(page);
+
+
+        }
+
+     
 
 
     }
