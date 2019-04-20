@@ -2,6 +2,8 @@
 using FlashCards.Models;
 using FlashCards.ViewModels.BundleViewModels;
 using FlashCards.ViewModels.CardViewModels;
+using FlashCards.ViewModels.ExamViewModels;
+using FlashCards.Views.Exam;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -75,6 +77,14 @@ namespace FlashCards.Views.Cards
             await Navigation.PushAsync(new BundleDetailPage()
             {
                 BindingContext = new BundleDetailViewModel(_bundle)
+            });
+        }
+
+        async void ExamSetupHandler(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ExamSetupPage()
+            {
+                BindingContext = new ExamSetupViewModel(_bundle)
             });
         }
 

@@ -5,7 +5,8 @@
              xmlns:cols="clr-namespace:FlashCards.Custom"
              Title="{Binding Name}">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Edit bundle's info" Clicked="EditBundleHandler" />
+        <ToolbarItem Text="Edit bundle's info" Clicked="EditBundleHandler" Icon="E"/>
+        <ToolbarItem Text="Test yourself!" Clicked="ExamSetupHandler" Icon="T" />
     </ContentPage.ToolbarItems>
     <ListView x:Name="CardsView"
             ItemsSource="{Binding Items}"
