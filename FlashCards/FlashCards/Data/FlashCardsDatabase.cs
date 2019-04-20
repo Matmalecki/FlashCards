@@ -19,6 +19,7 @@ namespace FlashCards.Data
             _database.CreateTableAsync<PhotoCard>().Wait();
         }
 
+
         public Task<List<Card>> GetCardsFromBundle(int id)
         {
             return _database.Table<Card>().Where(c => c.BundleId == id).ToListAsync();

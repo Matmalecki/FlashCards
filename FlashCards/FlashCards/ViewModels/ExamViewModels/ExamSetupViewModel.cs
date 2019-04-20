@@ -118,7 +118,7 @@ namespace FlashCards.ViewModels.ExamViewModels
                 else await Application.Current.MainPage.Navigation.PushAsync(new PhotoExamPage()
                 {
 
-                    BindingContext = new PhotoExamViewModel()
+                    BindingContext = new PhotoExamViewModel(await App.Database.GetPhotoCardsFromBundle(bundle.Id), Value)
                 });
             }
         }

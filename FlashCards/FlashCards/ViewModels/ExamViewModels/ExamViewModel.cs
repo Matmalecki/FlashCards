@@ -15,8 +15,10 @@ namespace FlashCards.ViewModels.ExamViewModels
 
         public ExamViewModel(List<Card> cards, int nrOfQuestions)
         {
-            Helpers.Shuffle(cards);
-            _questions = new Stack<Card>(cards);
+
+            Helpers.ShuffleCards(cards);
+
+            _questions = new Stack<Card>(cards.ConvertAll( o => (Card)o));
             while (_questions.Count > nrOfQuestions)
             {
                 _questions.Pop();
@@ -162,7 +164,7 @@ namespace FlashCards.ViewModels.ExamViewModels
 
         private static Random rng = new Random();
 
-        public static void Shuffle(this List<Card> list)
+        public static void ShuffleCards(List<Card> list)
         {
             int n = list.Count;
             while (n > 1)
@@ -170,6 +172,18 @@ namespace FlashCards.ViewModels.ExamViewModels
                 n--;
                 int k = rng.Next(n + 1);
                 Card value = list[k];
+                list[k] = list[n];
+                list[n] = value;
+            }
+        }
+        public static void ShufflePhotoCards(List<PhotoCard> list)
+        {
+            int n = list.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                PhotoCard value = list[k];
                 list[k] = list[n];
                 list[n] = value;
             }

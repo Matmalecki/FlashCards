@@ -1,12 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FlashCards.Views.Exam.PhotoExamPage">
+             x:Class="FlashCards.Views.Exam.PhotoExamPage"
+             xmlns:local="clr-namespace:FlashCards.Custom">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:StreamToStringConverter x:Key="converter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30*" />
+                <ColumnDefinition Width="30*" />
+                <ColumnDefinition Width="30*" />
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Column="1" HorizontalOptions="FillAndExpand">
+                <Grid Padding="5" HeightRequest="200" WidthRequest="200">
+                    <Image HorizontalOptions="CenterAndExpand" Source="{Binding Information, Converter={x:StaticResource converter}}" />
+                </Grid>
+                <Label Text="Answer:"  HorizontalOptions="FillAndExpand"/>
+                <Entry Text="{Binding UserAnswer}"  HorizontalOptions="FillAndExpand"/>
+                <Button Text="Check" Command="{Binding SubmitAnswerCommand}"  HorizontalOptions="FillAndExpand"/>
+                <Image Source="{Binding ImageSource}" WidthRequest="80" HeightRequest="80"/>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
+
