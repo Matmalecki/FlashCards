@@ -10,6 +10,7 @@
                 <ColumnDefinition Width="30*" />
             </Grid.ColumnDefinitions>
             <StackLayout Grid.Column="1" HorizontalOptions="FillAndExpand">
+                <Label Text="{Binding TimeLeft}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Medium"/>
                 <Label Text="{Binding Information}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Medium"/>
                 <Label Text="Answer:"  HorizontalOptions="FillAndExpand"/>
                 <Entry Text="{Binding UserAnswer}"  HorizontalOptions="FillAndExpand"/>

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -9,12 +10,21 @@ namespace FlashCards.ViewModels.ExamViewModels
 {
     public class ExamViewModel :BaseViewModel
     {
-      
+        private Timer _timer;
         private Stack<Card> _questions;
         private Card currentQuestion;
 
-        public ExamViewModel(List<Card> cards, int nrOfQuestions)
+        private readonly int secondsPerQuestion;
+
+        public ExamViewModel(List<Card> cards, int nrOfQuestions, int secondsPerQuestion = 0)
         {
+            this.secondsPerQuestion = secondsPerQuestion;
+            if (secondsPerQuestion != -1)
+            {
+                _totalSeconds = secondsPerQuestion;
+                _timer = new Timer(TimeSpan.FromSeconds(1), CountDown);
+                _timer.Start();
+            }
 
             Helpers.ShuffleCards(cards);
 
@@ -26,6 +36,22 @@ namespace FlashCards.ViewModels.ExamViewModels
 
 
             SetQuestion();
+
+        }
+
+        private void ResetTimeCountDown()
+        {
+            _totalSeconds = secondsPerQuestion;
+        }
+
+        private void CountDown()
+        {
+            _totalSeconds--;
+            if (_totalSeconds == 0)
+            {
+                CheckAnswerAsync();
+            }
+            OnPropertyChanged("TimeLeft");
         }
 
         private void SetQuestion()
@@ -51,6 +77,16 @@ namespace FlashCards.ViewModels.ExamViewModels
             }
         }
 
+        private int _totalSeconds;
+
+        public string TimeLeft
+        {
+            get {
+                if (_totalSeconds > 0)
+                    return _totalSeconds.ToString();
+                else return "";
+            }
+        }
 
         private int _score;
         public int Score
@@ -118,11 +154,12 @@ namespace FlashCards.ViewModels.ExamViewModels
                 SetQuestion();
             } else
             {
+                _timer.Stop();
                 await Task.Delay(500);
                 ShowScoreAndLeave();
                 Application.Current.MainPage.Navigation.PopAsync() ;
             }
-
+            ResetTimeCountDown();
 
         }
 
@@ -157,6 +194,39 @@ namespace FlashCards.ViewModels.ExamViewModels
      
 
 
+    }
+
+    public class Timer
+    {
+        private readonly TimeSpan _timeSpan;
+        private readonly Action _callback;
+
+        private static CancellationTokenSource _cancellationTokenSource;
+
+        public Timer(TimeSpan timeSpan, Action callback)
+        {
+            _timeSpan = timeSpan;
+            _callback = callback;
+            _cancellationTokenSource = new CancellationTokenSource();
+        }
+        public void Start()
+        {
+            CancellationTokenSource cts = _cancellationTokenSource; // safe copy
+            Device.StartTimer(_timeSpan, () =>
+            {
+                if (cts.IsCancellationRequested)
+                {
+                    return false;
+                }
+                _callback.Invoke();
+                return true; //true to continuous, false to single use
+            });
+        }
+
+        public void Stop()
+        {
+            Interlocked.Exchange(ref _cancellationTokenSource, new CancellationTokenSource()).Cancel();
+        }
     }
 
     public static class Helpers

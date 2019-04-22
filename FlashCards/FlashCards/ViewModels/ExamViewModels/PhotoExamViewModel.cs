@@ -12,9 +12,20 @@ namespace FlashCards.ViewModels.ExamViewModels
 
         private Stack<PhotoCard> _questions;
         private PhotoCard currentQuestion;
+        private Timer _timer;
 
-        public PhotoExamViewModel(List<PhotoCard> cards, int nrOfQuestions)
+        private readonly int secondsPerQuestion;
+
+        public PhotoExamViewModel(List<PhotoCard> cards, int nrOfQuestions, int secondsPerQuestion = -1)
         {
+
+            this.secondsPerQuestion = secondsPerQuestion;
+            if (secondsPerQuestion != -1)
+            {
+                _totalSeconds = secondsPerQuestion;
+                _timer = new Timer(TimeSpan.FromSeconds(1), CountDown);
+                _timer.Start();
+            }
             Helpers.ShufflePhotoCards(cards);
             _questions = new Stack<PhotoCard>(cards.ConvertAll(o => (PhotoCard)o));
             while (_questions.Count > nrOfQuestions)
@@ -48,7 +59,33 @@ namespace FlashCards.ViewModels.ExamViewModels
                 OnPropertyChanged();
             }
         }
+        private void ResetTimeCountDown()
+        {
+            _totalSeconds = secondsPerQuestion;
+        }
 
+        private void CountDown()
+        {
+            _totalSeconds--;
+            if (_totalSeconds == 0)
+            {
+                CheckAnswerAsync();
+            }
+            OnPropertyChanged("TimeLeft");
+        }
+
+
+        private int _totalSeconds;
+
+        public string TimeLeft
+        {
+            get
+            {
+                if (_totalSeconds > 0)
+                    return _totalSeconds.ToString();
+                else return "";
+            }
+        }
 
         private int _score;
         public int Score
@@ -117,11 +154,12 @@ namespace FlashCards.ViewModels.ExamViewModels
             }
             else
             {
+                _timer.Stop();
                 await Task.Delay(500);
                 ShowScoreAndLeave();
                 Application.Current.MainPage.Navigation.PopAsync();
             }
-
+            ResetTimeCountDown();
 
         }
 

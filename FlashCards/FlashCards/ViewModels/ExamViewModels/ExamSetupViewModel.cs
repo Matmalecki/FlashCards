@@ -109,16 +109,21 @@ namespace FlashCards.ViewModels.ExamViewModels
         {
             if (Value != 0)
             {
+                int seconds;
+                if (!int.TryParse(SecondsText, out seconds))
+                {
+                    seconds = -1;
+                }
                 if (bundle.CardType == CardType.Basic)
                     await Application.Current.MainPage.Navigation.PushAsync(new ExamPage()
                     {
 
-                        BindingContext = new ExamViewModel(await App.Database.GetCardsFromBundle(bundle.Id), Value)
+                        BindingContext = new ExamViewModel(await App.Database.GetCardsFromBundle(bundle.Id), Value, seconds)
                     });
                 else await Application.Current.MainPage.Navigation.PushAsync(new PhotoExamPage()
                 {
 
-                    BindingContext = new PhotoExamViewModel(await App.Database.GetPhotoCardsFromBundle(bundle.Id), Value)
+                    BindingContext = new PhotoExamViewModel(await App.Database.GetPhotoCardsFromBundle(bundle.Id), Value, seconds)
                 });
             }
         }

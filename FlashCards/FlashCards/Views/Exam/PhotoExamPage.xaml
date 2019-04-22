@@ -16,6 +16,7 @@
                 <ColumnDefinition Width="30*" />
             </Grid.ColumnDefinitions>
             <StackLayout Grid.Column="1" HorizontalOptions="FillAndExpand">
+                <Label Text="{Binding TimeLeft}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Medium"/>
                 <Grid Padding="5" HeightRequest="200" WidthRequest="200">
                     <Image HorizontalOptions="CenterAndExpand" Source="{Binding Information, Converter={x:StaticResource converter}}" />
                 </Grid>
