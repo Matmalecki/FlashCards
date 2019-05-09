@@ -10,7 +10,7 @@ namespace FlashCards.ViewModels.ExamViewModels
 {
     public class ExamViewModel :BaseViewModel
     {
-        private Timer _timer;
+        public Timer Timer;
         private Stack<Card> _questions;
         private Card currentQuestion;
 
@@ -22,8 +22,8 @@ namespace FlashCards.ViewModels.ExamViewModels
             if (secondsPerQuestion != -1)
             {
                 _totalSeconds = secondsPerQuestion;
-                _timer = new Timer(TimeSpan.FromSeconds(1), CountDown);
-                _timer.Start();
+                Timer = new Timer(TimeSpan.FromSeconds(1), CountDown);
+                Timer.Start();
             }
 
             Helpers.ShuffleCards(cards);
@@ -154,7 +154,7 @@ namespace FlashCards.ViewModels.ExamViewModels
                 SetQuestion();
             } else
             {
-                _timer.Stop();
+                Timer.Stop();
                 await Task.Delay(500);
                 ShowScoreAndLeave();
                 Application.Current.MainPage.Navigation.PopAsync() ;
