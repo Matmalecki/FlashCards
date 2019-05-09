@@ -55,7 +55,7 @@
 
 
             <ListView.Footer>
-                <Button Text="+" Command="{Binding AddBundleCommand}"  BackgroundColor="{x:Static cols:ColorConstants.AddButtonBgColor}"/>
+                <Button Style="{DynamicResource addBtnStyle}" Text="+" Command="{Binding AddBundleCommand}"  BackgroundColor="{x:Static cols:ColorConstants.AddButtonBgColor}"/>
             </ListView.Footer>
         </ListView>
     </StackLayout>

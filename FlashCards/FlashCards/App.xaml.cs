@@ -20,18 +20,25 @@ namespace FlashCards
             MainPage = new NavigationPage(new BundlesPage());
         }
 
+        private NavigationPage navigationPage;
+
         protected override void OnStart()
         {
             // Handle when your app starts
+
         }
 
         protected override void OnSleep()
         {
             // Handle when your app sleeps
+
+            navigationPage = Current.MainPage as NavigationPage;
         }
 
         protected override void OnResume()
         {
+            MainPage = navigationPage;
+
             // Handle when your app resumes
         }
 

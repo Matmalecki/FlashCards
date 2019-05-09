@@ -66,8 +66,13 @@ namespace FlashCards.Views
                 namedSize = NamedSize.Medium;
             else if (view.Width >= 800)
                 namedSize = NamedSize.Large;
-            // Set the final font size and the text with the embedded value.
 
+            int heightForBtn = 20;
+
+            if (view.Height < 400) heightForBtn = 40;
+            else if (view.Height < 700) heightForBtn = 60;
+            else if (view.Height < 900) heightForBtn = 80;
+            else if (view.Height < 1100) heightForBtn = 100;
             var labelStyle = new Style(typeof(Label))
             {
                 Setters =
@@ -76,6 +81,15 @@ namespace FlashCards.Views
                 }
             };
 
+            var addBtnStyle = new Style(typeof(Button))
+            {
+                Setters =
+                {
+                    new Setter { Property=Button.HeightRequestProperty, Value = heightForBtn }
+                }
+            };
+            view.Resources.Remove("addBtnStyle");
+            view.Resources.Add("addBtnStyle", addBtnStyle);
             view.Resources.Remove("labelStyle");
             view.Resources.Add("labelStyle", labelStyle);
         }

@@ -154,7 +154,8 @@ namespace FlashCards.ViewModels.ExamViewModels
             }
             else
             {
-                _timer.Stop();
+                if (_timer != null)
+                    _timer.Stop();
                 await Task.Delay(500);
                 ShowScoreAndLeave();
                 Application.Current.MainPage.Navigation.PopAsync();
