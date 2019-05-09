@@ -36,6 +36,7 @@ namespace FlashCards
         }
 
 
+
         public static FlashCardsDatabase Database
         {
             get

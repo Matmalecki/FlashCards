@@ -22,6 +22,7 @@ namespace FlashCards.Views
             InitializeComponent();
 
             BindingContext = new BundlesViewModel();
+            
         }
         protected override async void OnAppearing()
         {
@@ -48,6 +49,39 @@ namespace FlashCards.Views
 
         }
 
+        void OnContentViewSizeChanged(object sender, EventArgs args)
+        {
+            ContentPage view = (ContentPage)sender;
+
+
+            if (view.Width <= 0 || view.Height <= 0)
+                return;
+
+            NamedSize namedSize = NamedSize.Default;
+            if (view.Width < 300)
+                namedSize = NamedSize.Micro;
+            else if (view.Width < 600)
+                namedSize = NamedSize.Small;
+            else if (view.Width < 800)
+                namedSize = NamedSize.Medium;
+            else if (view.Width >= 800)
+                namedSize = NamedSize.Large;
+            // Set the final font size and the text with the embedded value.
+
+            var labelStyle = new Style(typeof(Label))
+            {
+                Setters =
+                {
+                    new Setter { Property=Label.FontSizeProperty, Value= Device.GetNamedSize(namedSize, typeof(Label)) },
+                }
+            };
+
+            view.Resources.Remove("labelStyle");
+            view.Resources.Add("labelStyle", labelStyle);
+        }
+
 
     }
+
+   
 }
