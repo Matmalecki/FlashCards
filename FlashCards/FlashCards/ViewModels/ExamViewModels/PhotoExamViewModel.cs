@@ -13,12 +13,12 @@ namespace FlashCards.ViewModels.ExamViewModels
         private Stack<PhotoCard> _questions;
         private PhotoCard currentQuestion;
         private Timer _timer;
-
+        private int maxScore;
         private readonly int secondsPerQuestion;
 
         public PhotoExamViewModel(List<PhotoCard> cards, int nrOfQuestions, int secondsPerQuestion = -1)
         {
-
+            maxScore = nrOfQuestions;
             this.secondsPerQuestion = secondsPerQuestion;
             if (secondsPerQuestion != -1)
             {
@@ -166,7 +166,7 @@ namespace FlashCards.ViewModels.ExamViewModels
 
         private async void ShowScoreAndLeave()
         {
-            var message = new Label { Text = $"Your score is : {Score}" };
+            var message = new Label { Text = $"Your score is : {Score} / {maxScore}" };
 
             Button button = new Button { Text = "Go back" };
 
